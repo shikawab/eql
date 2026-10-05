@@ -46,3 +46,12 @@ body[data-state="detected"] .alert-card.alerting,body[data-state="eew"] .alert-c
 @media(max-width:900px){.topbar{gap:14px}.state-orb{flex-basis:28px;width:28px;height:28px}.state-banner h1{font-size:clamp(21px,3vw,29px)}.top-meta{gap:8px}}
 @media(max-width:620px){.topbar{height:auto;min-height:0;align-items:flex-start;gap:14px;padding:16px 0 8px}.state-banner{gap:11px}.state-orb{flex-basis:23px;width:23px;height:23px}.state-label{font-size:10px}.state-banner h1{font-size:clamp(19px,4vw,25px)}.state-banner p{display:none}.top-meta{gap:7px}.demo-pill{padding:7px 9px}.utc-clock{display:none}}
 @media(max-width:440px){.topbar{display:flex;flex-direction:column;align-items:stretch;gap:12px}.state-banner{order:0}.top-meta{order:1;justify-content:flex-end}.state-orb{flex-basis:22px;width:22px;height:22px}}
+
+/* Separate northern Hokkaido observation points for Sapporo and Hakodate. */
+.hokkaido-city-dot{fill:var(--signal-green);stroke:#fff;stroke-width:2.4;vector-effect:non-scaling-stroke;filter:drop-shadow(0 1px 2px rgba(35,49,39,.3));transition:fill .22s,opacity .22s}
+.hokkaido-city-dot.unknown{fill:#b9beb7;opacity:.85}
+.hokkaido-city-dot.low{fill:var(--signal-green)}
+.hokkaido-city-dot.mid{fill:var(--signal-yellow)}
+.hokkaido-city-dot.high{fill:var(--signal-red)}
+.toast{position:fixed;z-index:20;left:50%;bottom:18px;max-width:calc(100vw - 32px);padding:7px 11px;border:1px solid rgba(35,49,39,.12);border-radius:999px;background:rgba(255,255,255,.92);box-shadow:0 5px 18px rgba(29,43,33,.12);color:#39443c;font-size:11px;line-height:1.35;text-align:center;opacity:0;transform:translate(-50%,8px);pointer-events:none;transition:opacity .18s,transform .18s;backdrop-filter:blur(12px)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
