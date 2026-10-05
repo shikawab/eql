@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f6f7f4" />
+  <title>EQL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <section class="state-banner" aria-live="polite"><span class="state-orb" aria-hidden="true"></span><div class="state-copy"><div class="state-label" id="statusLabel">Normal</div><h1 id="heroTitle">地震活動はありません</h1><p id="heroSub">全国の地震活動を見守っています</p></div></section>
+      <div class="top-meta"><span class="demo-pill" id="feedStatus"><b></b><span id="feedLabel">Connecting</span></span><span class="utc-clock" id="clock">--:--:-- JST</span><button class="sound-toggle" id="soundToggle" aria-pressed="false"><span class="sound-icon">◖</span><span id="soundLabel">Sound off</span></button></div>
+    </header>
+
+        <section class="dashboard-grid">
+      <section class="map-card" id="hero" aria-label="日本地図">
+        <div class="map-wrap">
+          <div class="map-grid"></div>
+          <div class="map-label label-north">North pacific ocean</div><div class="map-label label-south">Philippine sea</div>
+          <div class="japan-map-frame">
+            <img class="japan-map" src="japan-map.svg" alt="日本列島と都道府県の地図" />
+            <div id="quakeMarker" class="quake-marker" aria-hidden="true"><i class="wave wave-one"></i><i class="wave wave-two"></i><i class="quake-core"></i></div>
+          </div>
+          <div class="map-scale" aria-hidden="true"><span>0</span><i></i><span>500 km</span></div>
+          <div class="prefecture-legend"><span>最新地震報の観測震度</span><span class="dot-sample unknown"></span>未観測 <span class="dot-sample low"></span>1–2 <span class="dot-sample mid"></span>3–4 <span class="dot-sample high"></span>5弱以上</div>
+          <span id="mapState" class="sr-only">地震報の観測情報を待機中</span>
+        </div>
+      </section>
+
+      <article class="alert-card" id="alertCard">
+        <div class="card-head"><div><span class="eyebrow">EEA / early warning</span><h2>緊急地震速報</h2></div><span class="card-orbit"><i></i></span></div>
+        <div class="alert-empty" id="alertEmpty"><div class="empty-orb"><span>✓</span></div><strong>現在、発表はありません</strong><p>新しい情報を待機しています</p></div>
+        <div class="alert-active hidden" id="alertActive">
+          <div class="alert-kicker"><span class="warn-triangle">!</span><span id="alertType">Earthquake detected</span></div>
+          <div class="magnitude-row"><div><span class="metric-label">Magnitude</span><strong id="magValue">5.2</strong></div><div class="place"><span class="metric-label">震源地</span><strong id="placeValue">石川県能登地方</strong></div></div>
+          <div class="arrival-countdown hidden" id="arrivalCountdown" aria-live="polite"><div class="arrival-copy"><span class="arrival-symbol">⌖</span><div><span class="arrival-kicker">到達予測 / Kanagawa</span><strong>神奈川県内まで</strong><small>気象庁予測対象地域の到達時刻</small></div></div><strong class="countdown-value" id="countdownValue">00:18</strong></div>
+          <div class="alert-stats"><div><span>深さ</span><b id="depthValue">—</b></div><div><span>最大震度</span><b id="intensityValue">—</b></div><div><span>発生時刻</span><b id="eventTime">—</b></div></div>
+        </div>
+        <div class="card-bottom"><span class="source-mark"></span><span>Japan / EEW status</span><span class="right" id="alertStatus">Standby</span></div>
+      </article>
+
+      <article class="history-card">
+        <div class="history-head"><div><span class="eyebrow">Recent activity</span><h2>地震履歴</h2></div><span class="history-count"><b id="historyCount">03</b> Events</span></div>
+        <div class="timeline" id="timeline">
+          <div class="history-empty" id="historyEmpty">地震情報を読み込んでいます</div>
+        </div>
+        <div class="history-foot"><span>過去 24 時間</span><button id="clearSelection">選択を解除 <span>↗</span></button></div>
+      </article>
+    </section>
+
+    <section class="demo-bar sound-bar" aria-label="通知音の選択"><div class="demo-title"><span class="eyebrow">Chime sound</span><strong>通知音を選んで試聴</strong></div><div class="sound-options" role="group" aria-label="通知音"><button class="sound-option active" data-sound="bell">Bell</button><button class="sound-option" data-sound="glass">Glass</button><button class="sound-option" data-sound="rising">Rising</button></div><button class="test-sound" id="testSound"><span>♫</span> 音をテスト</button></section>
+    <footer><span>EQL <i>—</i> Live earthquake feed</span><span>配信: <a href="https://www.p2pquake.net/develop/" target="_blank" rel="noreferrer">P2P地震情報 API v2</a> · 地図: Geolonia</span></footer>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
